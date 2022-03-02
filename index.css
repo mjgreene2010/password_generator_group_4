@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: azure;
+}
+
+.title {
+  text-align: center;
+}
+
+.generated-password-container,
+.criteria-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.generated-passowrd {
+  flex-direction: row;
+}
+
+/* .checkbox {
+  flex-direction: column;
+} */
+
+#password-size {
+  text-align: center;
+  margin-top: 10vh;
+}
