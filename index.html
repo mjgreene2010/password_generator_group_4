@@ -21,21 +21,21 @@
           id="generated-password-box"
           value=""
         />
-        <button>Generate</button>
-        <button>Copy</button>
+        <button id="btn-generate">Generate</button>
+        <button id="btn-copy">Copy</button>
       </div>
     </div>
     <div id="password-size">
       <!-- <input type="range" value="8" min="8" max="128" /> -->
       <input
         type="range"
-        value="24"
+        value="8"
         min="8"
         max="128"
         oninput="this.nextElementSibling.value = this.value"
         id="range-value"
       />
-      <output>24</output>
+      <output id="range-value-output">8</output>
     </div>
     <div class="criteria-container">
       <div class="checkbox">
@@ -45,7 +45,6 @@
           name="criteria1"
           value="Lowercase"
         />
-
         <label for="criteria1"> lowercase</label>
       </div>
       <div class="checkbox">
