@@ -86,3 +86,8 @@ const generatingPassword = function () {
 };
 
 btnGenerate.addEventListener("click", generatingPassword);
+
+btnCopy.addEventListener("click", function () {
+  password.select();
+  document.execCommand("copy");
+});
