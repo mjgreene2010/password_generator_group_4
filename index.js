@@ -62,7 +62,7 @@ checkbox4.addEventListener("click", function () {
   }
   if (!checkbox4.checked) {
     selectedCriteria.find((arr, i) => {
-      if (arr.incldue("!")) selectedCriteria[i] = null;
+      if (arr.includes("!")) selectedCriteria[i] = null;
       selectedCriteria = selectedCriteria.filter((el) => el);
     });
   }
@@ -80,7 +80,33 @@ const generatingPassword = function () {
     generatedPassword.push(selectedCriteriaLoop[random]);
   }
 
+  if (checkbox1.checked) {
+    if (!generatedPassword.includes(...lowerCase)) {
+      generatedPassword = [];
+      return generatingPassword();
+    }
+  }
+  if (checkbox2.checked) {
+    if (!generatedPassword.includes(...upperCase)) {
+      generatedPassword = [];
+      return generatingPassword();
+    }
+  }
+  if (checkbox3.checked) {
+    if (!generatedPassword.includes(...numeric)) {
+      generatedPassword = [];
+      return generatingPassword();
+    }
+  }
+  if (checkbox4.checked) {
+    if (!generatedPassword.includes(...specialCharacter)) {
+      generatedPassword = [];
+      return generatingPassword();
+    }
+  }
+
   generatedPassword = generatedPassword.join("");
+
   password.value = generatedPassword;
   generatedPassword = [];
 };
