@@ -19,15 +19,24 @@ body {
   margin-top: 10vh;
 }
 
-.generated-passowrd {
+.generated-password {
   flex-direction: row;
+  
 }
-
-/* .checkbox {
-  flex-direction: column;
-} */
 
 #password-size {
   text-align: center;
   margin-top: 10vh;
+}
+.criteria-container{
+  flex-direction: column;
+}
+.containerbox{
+  width: 350px;
+  background-color: orange;
+  border-radius: 40px;
+}
+.boxcontainer{
+  display: flex;
+  justify-content: center;
 }
