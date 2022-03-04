@@ -1,0 +1,27 @@
+.project-container{
+    display: flex;
+    justify-content: center;
+    margin-top:25vh;
+}
+
+.project{
+    border: 1px solid black;
+    padding: 50px;
+    box-shadow: 15px 15px rgba(85, 83, 83, 0.288);
+    background: linear-gradient(to bottom right,lime, blue, black) ;
+}
+
+.generated-password-container{
+    border: 1px solid black;
+    padding: 9px;
+}
+
+.criteria-container{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+}
+
+#password-size{
+    color:white;
+}
