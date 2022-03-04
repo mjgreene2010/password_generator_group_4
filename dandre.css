@@ -3,7 +3,7 @@
 }
 
 body {
-  background: goldenrod;
+  background: linear-gradient(to bottom right, white, goldenrod, white);
   color: black;
   display: flex;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
