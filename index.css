@@ -23,6 +23,10 @@ h2 {
   margin: 10px 0 20px;
 }
 
+input[type="text"] {
+  width: 85%;
+}
+
 input[type="checkbox"] {
   margin-right: 0;
 }
