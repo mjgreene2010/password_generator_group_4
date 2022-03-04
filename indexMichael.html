@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Password Generator</title>
+    <link href="./index.css" rel="stylesheet" />
+    <script defer src="index.js"></script>
+  </head>
+  <body>
+    <div class="title">
+      <h1>Password Generator</h1>
+    </div>
+    <div class="generated-password-container">
+      <div class="generated-password">
+        <label for="generated-password-box">Generated Password:</label>
+        <input
+          type="text"
+          name="generated-password-box"
+          id="generated-password-box"
+          value=""
+        />
+        <button id="btn-generate">Generate</button>
+        <button id="btn-copy">Copy</button>
+      </div>
+    </div>
+    <div id="password-size">
+      <!-- <input type="range" value="8" min="8" max="128" /> -->
+      <input
+        type="range"
+        value="8"
+        min="8"
+        max="128"
+        oninput="this.nextElementSibling.value = this.value"
+        id="range-value"
+      />
+      <output id="range-value-output">8</output>
+    </div>
+    <div class="criteria-container">
+      <div class="checkbox">
+        <input
+          type="checkbox"
+          id="criteria1"
+          name="criteria1"
+          value="Lowercase"
+        />
+        <label for="criteria1"> lowercase</label>
+      </div>
+      <div class="checkbox">
+        <input
+          type="checkbox"
+          id="criteria2"
+          name="criteria2"
+          value="Uppercase"
+        />
+        <label for="criteria2"> uppercase</label>
+      </div>
+      <div class="checkbox">
+        <input
+          type="checkbox"
+          id="criteria3"
+          name="criteria3"
+          value="numeric"
+        />
+        <label for="criteria3"> numeric</label>
+      </div>
+      <div class="checkbox">
+        <input
+          type="checkbox"
+          id="criteria4"
+          name="criteria4"
+          value="special_character"
+        />
+        <label for="criteria4"> special characters</label>
+      </div>
+    </div>
+  </body>
+</html>

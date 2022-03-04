@@ -106,7 +106,6 @@ const generatingPassword = function () {
   }
 
   generatedPassword = generatedPassword.join("");
-
   password.value = generatedPassword;
   generatedPassword = [];
 };
