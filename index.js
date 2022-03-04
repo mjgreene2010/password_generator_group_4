@@ -116,5 +116,3 @@ btnCopy.addEventListener("click", function () {
   password.select();
   document.execCommand("copy");
 });
-
-//
