@@ -1,3 +1,4 @@
+// Retrieving DOM elements from HTML
 let password = document.getElementById("generated-password-box");
 let range = document.getElementById("range-value");
 let rangeOutput = document.getElementById("range-value-output");
@@ -8,110 +9,92 @@ let checkbox4 = document.getElementById("criteria4");
 let btnGenerate = document.getElementById("btn-generate");
 let btnCopy = document.getElementById("btn-copy");
 
+//SELECTING THE CRITERIA
+
+// Array for the criteria that the user selects
 let selectedCriteria = [];
 
+// Create an array for each criteria
 let specialCharacter = "!@#$%^&*?".split("");
 let lowerCase = "abcdefghijklmnopqrstuvwxyz".split("");
 let upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 let numeric = "0123456789".split("");
 
+// Listens for when the user chooses the length of the password
 range.addEventListener("onchange", function () {
   rangeOutput.innerText = this.target.value;
 });
 
-checkbox1.addEventListener("click", function () {
-  if (checkbox1.checked) {
-    selectedCriteria.push(lowerCase);
-  }
+// A helper function: checks to see whether the user has selected and deselected a criteria
+let isChecked = (checkbox, criteria) => {
+  checkbox.addEventListener("click", function () {
+    //if the user checks the criteria, the criteria will be pushed into the selected criteria array
+    if (checkbox.checked) {
+      selectedCriteria.push(criteria);
+    }
+    //if the user uncheck the criteria, the criteria will be removed from the array
+    if (!checkbox.checked) {
+      //an array of array(s)
+      selectedCriteria.find((arr, i) => {
+        if (arr.includes("a")) selectedCriteria[i] = null;
+        selectedCriteria = selectedCriteria.filter((el) => el);
+      });
+    }
+  });
+};
 
-  if (!checkbox1.checked) {
-    selectedCriteria.find((arr, i) => {
-      if (arr.includes("a")) selectedCriteria[i] = null;
-      selectedCriteria = selectedCriteria.filter((el) => el);
-    });
-  }
-});
+isChecked(checkbox1, lowerCase);
+isChecked(checkbox2, upperCase);
+isChecked(checkbox3, numeric);
+isChecked(checkbox4, specialCharacter);
 
-checkbox2.addEventListener("click", function () {
-  if (checkbox2.checked) {
-    selectedCriteria.push(upperCase);
-  }
-  if (!checkbox2.checked) {
-    selectedCriteria.find((arr, i) => {
-      if (arr.includes("A")) selectedCriteria[i] = null;
-      selectedCriteria = selectedCriteria.filter((el) => el);
-    });
-  }
-});
+//GENERATING THE PASSWORD
 
-checkbox3.addEventListener("click", function () {
-  if (checkbox3.checked) {
-    selectedCriteria.push(numeric);
-  }
-  if (!checkbox3.checked) {
-    selectedCriteria.find((arr, i) => {
-      if (arr.includes("0")) selectedCriteria[i] = null;
-      selectedCriteria = selectedCriteria.filter((el) => el);
-    });
-  }
-});
-
-checkbox4.addEventListener("click", function () {
-  if (checkbox4.checked) {
-    selectedCriteria.push(specialCharacter);
-  }
-  if (!checkbox4.checked) {
-    selectedCriteria.find((arr, i) => {
-      if (arr.includes("!")) selectedCriteria[i] = null;
-      selectedCriteria = selectedCriteria.filter((el) => el);
-    });
-  }
-});
-
+// Array that the password will be stored in
 let generatedPassword = [];
 
+// A helper function: checks to see if the selected criteria is in the password,
+// if not, the password will be regenerated
+let isIncluded = (checkbox, criteria) => {
+  if (checkbox.checked) {
+    if (!generatedPassword.includes(...criteria)) {
+      generatedPassword = [];
+      return generatingPassword();
+    }
+  }
+};
+
+//Function that generates the password
 const generatingPassword = function () {
+  // needed to copy the selected criteria array so i could flatten the array of array(s)
   let selectedCriteriaLoop = selectedCriteria.flat();
   let selectedCriteriaLength = selectedCriteriaLoop.length;
   let passwordLength = range.value;
 
+  //the loop that generates the password
+  //use math floor and math random to create a random number to select an element in selected criteria
+  //then pushes to the generated password array
   for (let i = 0; i < passwordLength; i++) {
     let random = Math.floor(Math.random() * selectedCriteriaLength);
     generatedPassword.push(selectedCriteriaLoop[random]);
   }
 
-  if (checkbox1.checked) {
-    if (!generatedPassword.includes(...lowerCase)) {
-      generatedPassword = [];
-      return generatingPassword();
-    }
-  }
-  if (checkbox2.checked) {
-    if (!generatedPassword.includes(...upperCase)) {
-      generatedPassword = [];
-      return generatingPassword();
-    }
-  }
-  if (checkbox3.checked) {
-    if (!generatedPassword.includes(...numeric)) {
-      generatedPassword = [];
-      return generatingPassword();
-    }
-  }
-  if (checkbox4.checked) {
-    if (!generatedPassword.includes(...specialCharacter)) {
-      generatedPassword = [];
-      return generatingPassword();
-    }
-  }
+  isIncluded(checkbox1, lowerCase);
+  isIncluded(checkbox2, upperCase);
+  isIncluded(checkbox3, numeric);
+  isIncluded(checkbox4, specialCharacter);
 
+  // uses the join method to turn the generated password into a string
   generatedPassword = generatedPassword.join("");
   password.value = generatedPassword;
+  // empty the password array before the next password is generated
   generatedPassword = [];
 };
 
+// listens for a click on the generate button to run the generating password function
 btnGenerate.addEventListener("click", generatingPassword);
 
+// listens for a click on the copy button to copy the password
 btnCopy.addEventListener("click", function () {
   password.select();
   document.execCommand("copy");
